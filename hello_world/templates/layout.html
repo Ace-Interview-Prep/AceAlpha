@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+      <meta charset = "utf8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- TEST TEST TEST TEST TEST : REMOVE THIS-->
+      <script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+      <!-- TEST TEST TEST TEST TEST : REMOVE THIS-->
+      <title>Ace Alpha</title>  
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      {% block css %}{% endblock %}
+      <!-- This allows us to conditionally render CSS rather than having one large dictionary of CSS items -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body> 
+       <!-- TEST   TEST TEST TEST -->
+        <!-- TEST   TEST TEST TEST -->
+      <div id="fb-root"></div> <!-- TEST   TEST TEST TEST -->
+      {% include 'includes/_navbar.html' %}
+      <!-- <form action="http://sigv4examplebucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+        Key to upload: 
+        <input type="input"  name="key" value="user/user1/${filename}" /><br />
+        <input type="hidden" name="acl" value="public-read" />
+        <input type="hidden" name="success_action_redirect" value="http://sigv4examplebucket.s3.amazonaws.com/successful_upload.html" />
+        Content-Type: 
+        <input type="input"  name="Content-Type" value="image/jpeg" /><br />
+        <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" /> 
+        <input type="hidden" name="x-amz-server-side-encryption" value="AES256" /> 
+        <input type="text"   name="X-Amz-Credential" value="AKIAIOSFODNN7EXAMPLE/20151229/us-east-1/s3/aws4_request" />
+        <input type="text"   name="X-Amz-Algorithm" value="AWS4-HMAC-SHA256" />
+        <input type="text"   name="X-Amz-Date" value="20151229T000000Z" />
+    
+        Tags for File: 
+        <input type="input"  name="x-amz-meta-tag" value="" /><br />
+        <input type="hidden" name="Policy" value='<Base64-encoded policy string>' />
+        <input type="hidden" name="X-Amz-Signature" value="<signature-value>" />
+        File: 
+        <input type="file"   name="file" /> <br />
+         The elements after this will be ignored 
+        <input type="submit" name="submit" value="Upload to Amazon S3" />
+      </form> -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <!-- <script src="https://sdk.amazonaws.com/js/aws-sdk-2.709.0.min.js"></script> -->
+      <script>
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        // var appId = '317791152740863';
+
+
+        // var roleArn = 'arn:aws:iam::106496945803:role/FrontEndJSRole';
+        // var bucketName = 'aceuploadsbucket';
+        // //TEST, MOVE BACK TO ORIGINAL SPOT
+        // AWS.config.region = 'ca-cental-1';
+        // AWS.config.credentials.accessKeyId = "AKIARRS5WN2FR32FBEVF"
+        // AWS.config.credentials.secretAccessKey = "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"
+
+        // // AWS.config.update({
+        // //   region: 'ca-cental-1',
+
+          
+        // // })
+        // var bucket = new AWS.S3({
+        //     params: {
+        //         Bucket: bucketName
+        //     }
+        // });
+        
+        
+        
+        // var fbUserId;
+
+        // if (!document.getElementById("fb-root")) {
+        //   // create div required for fb
+        //   const fbDiv = document.createElement("div");
+        //   fbDiv.id = "fb-root";
+        //   document.body.appendChild(fbDiv);
+        //   // Run any script after sdk is loaded
+        //   window.fbAsyncInit = () => {
+        //     //
+        //   };
+        //   // inject sdk.js
+        //   (function(d, script) {
+        //     script = d.createElement("script");
+        //     script.type = "text/javascript";
+        //     script.async = true;
+        //     script.src =
+        //       "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=" +
+        //       process.env.REACT_APP_FB_APP_ID +
+        //       "&autoLogAppEvents=1";
+        //     d.getElementsByTagName("head")[0].appendChild(script);
+        //   })(document);
+        // }
+        // window.fbAsyncInit = function () {
+        //     FB.init({
+        //         appId: appId,
+        //         version: 'v8.0', ////TEST, WAS "v7.0", TRY V2.0 TOO
+        //         //cookie: true,
+        //         xfbml: true,
+        //         autoLogAppEvents: true
+        //     });
+            
+        //     //VALID, KEEP
+        //     FB.login(function (response) {
+        //         bucket.config.credentials = new AWS.WebIdentityCredentials({
+        //             ProviderId: 'graph.facebook.com',
+        //             RoleArn: roleArn,
+        //             WebIdentityToken: response.authResponse.accessToken
+        //         });
+        //         fbUserId = response.authResponse.userID;
+        //     });
+        // };
+
+        // //TEST ,, VAR BUCKET = NEW ,, WAS HERE
+
+        //   // Load the Facebook SDK asynchronously
+        // (function (d, s, id) {
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) {
+        //         return;
+        //     }
+        //     js = d.createElement(s);
+        //     js.id = id;
+        //     js.src = "//connect.facebook.net/en_US/sdk/debug.js" //"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";// TEST WITH (DEBUG):  
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+      
+        // function checkLoginState() {
+        //   FB.getLoginStatus(function(response) {
+        //     FB.login(function (response) {
+        //         bucket.config.credentials = new AWS.WebIdentityCredentials({
+        //             ProviderId: 'graph.facebook.com',
+        //             RoleArn: roleArn,
+        //             WebIdentityToken: response.authResponse.accessToken
+        //         });
+        //         fbUserId = response.authResponse.userID;
+        //         console.log(fbUserId)
+        //     });
+        //   });
+        // }
+      </script>
+      <div class="container">
+     
+        {% block body %}{% endblock %}
+      </div>
+    </body> 
+</html>
